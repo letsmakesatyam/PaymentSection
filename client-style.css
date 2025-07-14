@@ -1,0 +1,291 @@
+/* Reset + Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #111;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: #25d366;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.cta-button:hover {
+  background: #1ebe5b;
+}
+
+/* Features Section */
+.features {
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.features ul {
+  list-style: none;
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.features li {
+  margin-bottom: 15px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.features li::before {
+  content: "✔️";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Pricing Section */
+.pricing {
+  padding: 60px 20px;
+  background: #f2f2f2;
+  text-align: center;
+}
+
+.pricing h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.pricing p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: #eee;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .features ul {
+    font-size: 1rem;
+  }
+}
+.plans {
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.plans h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.plan-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.plan-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 12px;
+  width: 280px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+}
+
+.plan-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.plan-card .price {
+  font-size: 1.4rem;
+  color: #25d366;
+  margin-bottom: 15px;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+}
+
+.plan-card ul li {
+  margin-bottom: 10px;
+}
+
+.plan-card.highlight {
+  border: 2px solid #25d366;
+  background: #eafff3;
+}
+.hidden {
+  display: none;
+}
+
+#plan-form-section {
+  background: #fff;
+  padding: 60px 20px;
+  max-width: 600px;
+  margin: 50px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#plan-form label {
+  display: block;
+  margin: 15px 0 5px;
+  font-weight: bold;
+}
+
+#plan-form input, #plan-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#plan-form button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #25d366;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.choose-plan {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #1e90ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(30, 144, 255, 0.2);
+}
+
+.choose-plan:hover {
+  background-color: #0077cc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
+}
+.hidden {
+  display: none;
+}
+#plan-form-section {
+  background: #fff;
+  padding: 50px 20px;
+  max-width: 700px;
+  margin: 60px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+#plan-form-section h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+#plan-form input,
+#plan-form textarea,
+#plan-form select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+#plan-form button {
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#plan-form button:hover {
+  background: #1ebe5b;
+}
+.payment-note {
+  margin-top: 30px;
+  padding: 20px;
+  background: #fff4e5;
+  border-left: 5px solid #ff9900;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.payment-note a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.payment-note h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
