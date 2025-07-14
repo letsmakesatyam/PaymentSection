@@ -8,11 +8,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+
   <section class="hero">
     <div class="content">
       <h1>Build Your Own Stunning Portfolio</h1>
-      <p>Get a personalized, responsive, animated portfolio just like mine – delivered in <strong>48 hours</strong>!</p>
-      <a href="https://wa.me/918010999080?text=Hi%20Satyam,%20I%20want%20my%20own%20portfolio%20website!" class="cta-button">
+      <p>Delivered in <strong>48 hours</strong> with your content!</p>
+      <a href="https://wa.me/918010999080?text=Hi%20Satyam,%20I%20want%20my%20own%20portfolio!" class="cta-button">
         <i class="fab fa-whatsapp"></i> Request on WhatsApp
       </a>
     </div>
@@ -27,37 +28,27 @@
         <ul>
           <li>✅ 1-page Portfolio</li>
           <li>✅ Responsive Design</li>
-          <li>✅ WhatsApp Integration</li>
           <li>🚀 Delivery in 48 hrs</li>
         </ul>
         <button class="choose-plan" data-plan="Basic">Choose Basic</button>
       </div>
-
       <div class="plan-card highlight">
         <h3>Standard</h3>
         <p class="price">₹1499</p>
         <ul>
           <li>✅ 3-page Portfolio</li>
           <li>✅ Resume Upload</li>
-          <li>✅ Dark/Light Mode Toggle</li>
-          <li>✅ Smooth Animations</li>
           <li>🚀 Delivery in 48 hrs</li>
         </ul>
         <button class="choose-plan" data-plan="Standard">Choose Standard</button>
       </div>
-
       <div class="plan-card premium">
         <h3>Premium</h3>
         <p class="price">₹1999</p>
         <ul>
-          <li>✅ Fully Custom Portfolio</li>
-          <li>🌗 Dark/Light Mode Toggle</li>
-          <li>🧠 Blog Section (3 Posts)</li>
-          <li>📄 Resume Upload & Download</li>
-          <li>🔗 WhatsApp + LinkedIn CTA</li>
-          <li>🌍 Live Hosting</li>
-          <li>📘 Edit Guide</li>
-          <li>🚀 Delivery in 48–72 hrs</li>
+          <li>✅ Custom Design</li>
+          <li>✅ Blog, Hosting, LinkedIn</li>
+          <li>🚀 Delivery in 72 hrs</li>
         </ul>
         <button class="choose-plan" data-plan="Premium">Choose Premium</button>
       </div>
@@ -67,44 +58,33 @@
   <section id="plan-form-section" class="hidden">
     <h2>Submit Your Details</h2>
     <form id="plan-form">
-      <input type="hidden" name="planType" id="planType" />
+      <input type="hidden" id="planType" />
 
-      <label for="plan">Select Plan</label>
-      <select name="plan" id="plan-select" required>
-        <option value="">-- Choose Plan --</option>
+      <label>Select Plan</label>
+      <select id="plan-select" required>
+        <option value="">-- Choose --</option>
         <option value="Basic">Basic – ₹999</option>
         <option value="Standard">Standard – ₹1499</option>
         <option value="Premium">Premium – ₹1999</option>
       </select>
 
-      <label for="name">Full Name</label>
-      <input type="text" name="name" placeholder="John Doe" required>
-
-      <label for="email">Email</label>
-      <input type="email" name="email" placeholder="you@example.com" required>
-
-      <label for="whatsapp">WhatsApp Number</label>
-      <input type="text" name="whatsapp" placeholder="+91-9876543210" required>
-
-      <label for="github">GitHub Profile</label>
-      <input type="url" name="github" placeholder="https://github.com/username">
-
-      <label for="linkedin">LinkedIn Profile</label>
-      <input type="url" name="linkedin" placeholder="https://linkedin.com/in/username">
-
-      <label for="goals">What do you want in your portfolio?</label>
-      <textarea name="goals" rows="5" placeholder="Describe your dream portfolio..."></textarea>
+      <input type="text" placeholder="Full Name" id="name" required />
+      <input type="email" placeholder="Email" id="email" required />
+      <input type="text" placeholder="WhatsApp Number" id="whatsapp" required />
+      <input type="url" placeholder="GitHub Profile" />
+      <input type="url" placeholder="LinkedIn Profile" />
+      <textarea placeholder="Describe what you want..."></textarea>
 
       <div id="paymentUI" class="hidden"></div>
 
-      <button type="button" onclick="startPayment()">Pay & Start</button>
+      <button type="button" id="payBtn">Pay & Start</button>
     </form>
   </section>
 
   <section id="confirmation-section" class="hidden">
-    <h2>🎉 You're Almost There!</h2>
-    <p>Please confirm your order by sending payment details on WhatsApp.</p>
-    <a href="https://wa.me/918010999080?text=Hi%20Satyam,%20I%20have%20paid%2050%%20advance%20for%20my%20portfolio%20project.%20Here%20is%20my%20payment%20screenshot." class="cta-button" target="_blank">
+    <h2>🎉 You're Almost Done!</h2>
+    <p>Send your payment screenshot on WhatsApp to confirm your order:</p>
+    <a href="https://wa.me/918010999080?text=Hi%20Satyam,%20I%20have%20paid%2050%%20advance%20for%20my%20portfolio.%20Please%20check%20the%20screenshot." class="cta-button" target="_blank">
       <i class="fab fa-whatsapp"></i> Confirm on WhatsApp
     </a>
   </section>

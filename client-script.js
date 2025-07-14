@@ -11,42 +11,48 @@ document.querySelectorAll('.choose-plan').forEach(btn => {
 });
 
 function isMobileDevice() {
-  return /android|iphone|ipad|mobile/i.test(navigator.userAgent);
+  return /android|iphone|ipad|mobile/i.test(navigator.userAgent.toLowerCase());
 }
 
-function startPayment() {
+document.getElementById('payBtn').addEventListener('click', () => {
   const plan = document.getElementById("planType").value;
+  if (!plan) return alert("Please select a plan.");
+
+  const paymentUI = document.getElementById("paymentUI");
+  paymentUI.innerHTML = ""; // Reset
   let amount = 999;
   if (plan === "Standard") amount = 1499;
   if (plan === "Premium") amount = 1999;
-  const halfAmount = Math.round(amount / 2);
-
-  const paymentUI = document.getElementById("paymentUI");
-  paymentUI.innerHTML = "";
+  const half = Math.round(amount / 2);
 
   if (isMobileDevice()) {
-    const upiLink = `upi://pay?pa=satyamrevgade2-1@okhdfcbank&pn=Satyam%20Revgade&am=${halfAmount}&cu=INR&tn=50%25%20Advance%20for%20${plan}`;
+    const upiLink = `upi://pay?pa=satyamrevgade2-1@okhdfcbank&pn=Satyam%20Revgade&am=${half}&cu=INR&tn=Advance%2050%25%20for%20${plan}`;
     const btn = document.createElement("a");
     btn.href = upiLink;
-    btn.innerText = `Pay ₹${halfAmount} via UPI`;
+    btn.innerText = `Pay ₹${half} via UPI`;
     btn.className = "cta-button";
-    btn.style.display = "block";
     btn.target = "_blank";
     paymentUI.appendChild(btn);
   } else {
     const qr = document.createElement("img");
-    qr.src = "https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg"; // Your static QR code image
-    qr.alt = "Scan to Pay";
-    qr.style.width = "250px";
-    qr.style.margin = "20px auto";
+    qr.src = "https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg";
+    qr.alt = "Scan this QR to Pay";
     paymentUI.appendChild(qr);
+    const note = document.createElement("p");
+    note.innerHTML = `Scan QR to pay <strong>₹${half}</strong> to UPI ID: <code>satyamrevgade2-1@okhdfcbank</code>`;
+    paymentUI.appendChild(note);
   }
 
-  paymentUI.classList.remove("hidden");
-
-  setTimeout(() => {
+  const confirmBtn = document.createElement("button");
+  confirmBtn.innerText = "I Have Paid";
+  confirmBtn.className = "cta-button";
+  confirmBtn.style.marginTop = "20px";
+  confirmBtn.addEventListener("click", () => {
     document.getElementById('plan-form-section').classList.add('hidden');
     document.getElementById('confirmation-section').classList.remove('hidden');
     document.getElementById('confirmation-section').scrollIntoView({ behavior: 'smooth' });
-  }, 6000); // Simulate payment completion
-}
+  });
+
+  paymentUI.appendChild(confirmBtn);
+  paymentUI.classList.remove("hidden");
+});

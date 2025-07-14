@@ -520,3 +520,120 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  color: #111;
+}
+
+.hero {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.cta-button {
+  background: #25d366;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.plans {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.plan-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.plan-card {
+  background: white;
+  padding: 20px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.plan-card h3 {
+  margin-bottom: 10px;
+}
+
+.plan-card .price {
+  color: #25d366;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.choose-plan {
+  background: #1e90ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#plan-form-section {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+#plan-form input,
+#plan-form select,
+#plan-form textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#plan-form button {
+  background: #25d366;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#paymentUI {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#paymentUI img {
+  width: 250px;
+  margin-bottom: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+#confirmation-section {
+  background: #fffbe6;
+  padding: 40px;
+  text-align: center;
+  max-width: 600px;
+  margin: 60px auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
