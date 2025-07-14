@@ -10,6 +10,13 @@ document.querySelectorAll('.choose-plan').forEach(btn => {
   });
 });
 
+function getHalfAmount(plan) {
+  if (plan === "Basic") return 499;
+  if (plan === "Standard") return 750;
+  if (plan === "Premium") return 1000;
+  return 0;
+}
+
 function isMobileDevice() {
   return /android|iphone|ipad|mobile/i.test(navigator.userAgent.toLowerCase());
 }
@@ -18,32 +25,36 @@ document.getElementById('payBtn').addEventListener('click', () => {
   const plan = document.getElementById("planType").value;
   if (!plan) return alert("Please select a plan.");
 
+  const amount = getHalfAmount(plan);
+  const upiLink = `upi://pay?pa=satyamrevgade2-1@okhdfcbank&pn=Satyam%20Revgade&am=${amount}&cu=INR&tn=50%%20Advance%20for%20${plan}%20Plan`;
+
   const paymentUI = document.getElementById("paymentUI");
-  paymentUI.innerHTML = ""; // Clear
+  paymentUI.innerHTML = ""; // Clear UI
+  paymentUI.classList.remove("hidden");
 
-  let half = 499;
-  if (plan === "Standard") half = 750;
-  else if (plan === "Premium") half = 1000;
+  // QR Image (visible to all)
+  const qr = document.createElement("img");
+  qr.src = "https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg"; // your QR URL
+  qr.alt = "Scan to Pay";
+  paymentUI.appendChild(qr);
 
+  // Amount Info
+  const info = document.createElement("p");
+  info.innerHTML = `Pay <strong>₹${amount}</strong> (50% of ${plan}) using the QR or UPI app.`;
+  paymentUI.appendChild(info);
+
+  // Mobile-only UPI button
   if (isMobileDevice()) {
-    const upiLink = `upi://pay?pa=satyamrevgade2-1@okhdfcbank&pn=Satyam%20Revgade&am=${half}&cu=INR&tn=Advance%2050%25%20for%20${plan}`;
-    const btn = document.createElement("a");
-    btn.href = upiLink;
-    btn.innerText = `Pay ₹${half} via UPI`;
-    btn.className = "cta-button";
-    btn.target = "_blank";
-    paymentUI.appendChild(btn);
-  } else {
-    const qr = document.createElement("img");
-    qr.src = "https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg"; // Replace if needed
-    qr.alt = "Scan to Pay";
-    paymentUI.appendChild(qr);
-
-    const note = document.createElement("p");
-    note.innerHTML = `Scan this QR to pay <strong>₹${half}</strong> (50% of ${plan})`;
-    paymentUI.appendChild(note);
+    const mobileBtn = document.createElement("a");
+    mobileBtn.href = upiLink;
+    mobileBtn.innerText = `Pay ₹${amount} in UPI App`;
+    mobileBtn.className = "cta-button";
+    mobileBtn.style.marginTop = "10px";
+    mobileBtn.target = "_blank";
+    paymentUI.appendChild(mobileBtn);
   }
 
+  // Confirm Button
   const confirmBtn = document.createElement("button");
   confirmBtn.innerText = "I Have Paid";
   confirmBtn.className = "cta-button";
@@ -55,5 +66,4 @@ document.getElementById('payBtn').addEventListener('click', () => {
   });
 
   paymentUI.appendChild(confirmBtn);
-  paymentUI.classList.remove("hidden");
 });
