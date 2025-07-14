@@ -75,7 +75,16 @@
       <input type="url" placeholder="LinkedIn Profile" />
       <textarea placeholder="Describe what you want..."></textarea>
 
-      <div id="paymentUI" class="hidden"></div>
+      <div id="paymentUI" class="hidden">
+        <h3>📌 Prefer Scanning the QR Code</h3>
+        <p>Some UPI apps may block link-based payments for security. Please <strong>scan the QR below</strong> for guaranteed success.</p>
+        <img src="https://res.cloudinary.com/dodaz2baz/image/upload/v1710000000/your-qr-code.png" alt="Pay QR" style="width: 220px; margin: 20px auto; display: block;" />
+
+        <p>OR tap the button below to try UPI app link (may not work on all devices):</p>
+        <button type="button" id="upiLinkBtn" class="cta-button" style="margin-bottom: 20px;">Open in UPI App</button>
+
+        <button type="button" id="confirmPaidBtn" class="cta-button" style="background-color:#111;">I Have Paid</button>
+      </div>
 
       <button type="button" id="payBtn">Pay & Start</button>
     </form>

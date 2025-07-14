@@ -1,69 +1,66 @@
+// Handle plan selection → Prefill form + show section
 document.querySelectorAll('.choose-plan').forEach(btn => {
   btn.addEventListener('click', () => {
     const selectedPlan = btn.getAttribute('data-plan');
     document.getElementById('plan-select').value = selectedPlan;
     document.getElementById('planType').value = selectedPlan;
 
-    document.getElementById('plan-form-section').classList.remove('hidden');
-    document.getElementById('confirmation-section').classList.add('hidden');
-    document.getElementById('plan-form-section').scrollIntoView({ behavior: 'smooth' });
+    const formSection = document.getElementById('plan-form-section');
+    formSection.classList.remove('hidden');
+    formSection.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-function getHalfAmount(plan) {
-  if (plan === "Basic") return 499;
-  if (plan === "Standard") return 750;
-  if (plan === "Premium") return 1000;
-  return 0;
-}
-
-function isMobileDevice() {
-  return /android|iphone|ipad|mobile/i.test(navigator.userAgent.toLowerCase());
-}
-
 document.getElementById('payBtn').addEventListener('click', () => {
-  const plan = document.getElementById("planType").value;
-  if (!plan) return alert("Please select a plan.");
-
-  const amount = getHalfAmount(plan);
-  const upiLink = `upi://pay?pa=satyamrevgade2-1@okhdfcbank&pn=Satyam%20Revgade&am=${amount}&cu=INR&tn=50%%20Advance%20for%20${plan}%20Plan`;
-
-  const paymentUI = document.getElementById("paymentUI");
-  paymentUI.innerHTML = ""; // Clear UI
-  paymentUI.classList.remove("hidden");
-
-  // QR Image (visible to all)
-  const qr = document.createElement("img");
-  qr.src = "https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg"; // your QR URL
-  qr.alt = "Scan to Pay";
-  paymentUI.appendChild(qr);
-
-  // Amount Info
-  const info = document.createElement("p");
-  info.innerHTML = `Pay <strong>₹${amount}</strong> (50% of ${plan}) using the QR or UPI app.`;
-  paymentUI.appendChild(info);
-
-  // Mobile-only UPI button
-  if (isMobileDevice()) {
-    const mobileBtn = document.createElement("a");
-    mobileBtn.href = upiLink;
-    mobileBtn.innerText = `Pay ₹${amount} in UPI App`;
-    mobileBtn.className = "cta-button";
-    mobileBtn.style.marginTop = "10px";
-    mobileBtn.target = "_blank";
-    paymentUI.appendChild(mobileBtn);
+  const plan = document.getElementById("plan-select").value;
+  if (!plan) {
+    alert("Please select a plan before proceeding.");
+    return;
   }
 
-  // Confirm Button
-  const confirmBtn = document.createElement("button");
-  confirmBtn.innerText = "I Have Paid";
-  confirmBtn.className = "cta-button";
-  confirmBtn.style.marginTop = "20px";
-  confirmBtn.addEventListener("click", () => {
-    document.getElementById('plan-form-section').classList.add('hidden');
-    document.getElementById('confirmation-section').classList.remove('hidden');
-    document.getElementById('confirmation-section').scrollIntoView({ behavior: 'smooth' });
-  });
+  let amount = 999;
+  if (plan === "Standard") amount = 1499;
+  else if (plan === "Premium") amount = 1999;
 
-  paymentUI.appendChild(confirmBtn);
+  const halfAmount = Math.floor(amount / 2); // Round down for simplicity
+
+  const upiLink = `upi://pay?pa=satyamrevgade2-1@okhdfcbank&pn=Satyam%20Revgade&am=${halfAmount}&cu=INR&tn=${plan}%20Plan%20Advance%2050%25`;
+
+  // Show payment UI with QR and buttons
+  const paymentUI = document.getElementById('paymentUI');
+  paymentUI.classList.remove('hidden');
+  paymentUI.innerHTML = `
+    <div class="payment-instruction">
+      <h3>📌 Prefer Scanning the QR Code</h3>
+      <p>Some UPI apps may block link-based payments for security. Please <strong>scan the QR below</strong> for guaranteed success.</p>
+      <p>OR tap the button to try UPI app link (may not work on all devices).</p>
+
+      <img src="https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg" alt="UPI QR Code" class="qr-image" style="width: 250px; height: auto; margin: 20px auto; display: block;" />
+
+      <button id="upiLinkBtn" class="cta-button">💰 Pay via UPI App</button>
+      <button id="confirmPaidBtn" class="cta-button" style="margin-top: 15px; background: #28a745;">✅ I Have Paid</button>
+    </div>
+  `;
+
+  // UPI button → open app link
+  setTimeout(() => {
+    const upiBtn = document.getElementById('upiLinkBtn');
+    if (upiBtn) {
+      upiBtn.addEventListener('click', () => {
+        window.location.href = upiLink;
+      });
+    }
+  }, 100); // Slight delay to ensure DOM is ready
+
+  // "I Have Paid" → show confirmation section
+  setTimeout(() => {
+    const confirmBtn = document.getElementById('confirmPaidBtn');
+    if (confirmBtn) {
+      confirmBtn.addEventListener('click', () => {
+        document.getElementById('plan-form-section').classList.add('hidden');
+        document.getElementById('confirmation-section').classList.remove('hidden');
+        document.getElementById('confirmation-section').scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }, 100);
 });
