@@ -19,11 +19,11 @@ document.getElementById('payBtn').addEventListener('click', () => {
   if (!plan) return alert("Please select a plan.");
 
   const paymentUI = document.getElementById("paymentUI");
-  paymentUI.innerHTML = ""; // Reset
-  let amount = 999;
-  if (plan === "Standard") amount = 1499;
-  if (plan === "Premium") amount = 1999;
-  const half = Math.round(amount / 2);
+  paymentUI.innerHTML = ""; // Clear
+
+  let half = 499;
+  if (plan === "Standard") half = 750;
+  else if (plan === "Premium") half = 1000;
 
   if (isMobileDevice()) {
     const upiLink = `upi://pay?pa=satyamrevgade2-1@okhdfcbank&pn=Satyam%20Revgade&am=${half}&cu=INR&tn=Advance%2050%25%20for%20${plan}`;
@@ -35,11 +35,12 @@ document.getElementById('payBtn').addEventListener('click', () => {
     paymentUI.appendChild(btn);
   } else {
     const qr = document.createElement("img");
-    qr.src = "https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg";
-    qr.alt = "Scan this QR to Pay";
+    qr.src = "https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg"; // Replace if needed
+    qr.alt = "Scan to Pay";
     paymentUI.appendChild(qr);
+
     const note = document.createElement("p");
-    note.innerHTML = `Scan QR to pay <strong>₹${half}</strong> to UPI ID: <code>satyamrevgade2-1@okhdfcbank</code>`;
+    note.innerHTML = `Scan this QR to pay <strong>₹${half}</strong> (50% of ${plan})`;
     paymentUI.appendChild(note);
   }
 
