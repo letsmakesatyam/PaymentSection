@@ -2,7 +2,7 @@
 fetch('https://raw.githubusercontent.com/letsmakesatyam/portfolio-seat-control/refs/heads/main/seats.json')
   .then(res => res.json())
   .then(data => {
-    if (data.seatsAvailable) {
+    if (!data.seatsAvailable) {
       setupPlanFlow(); // Enable normal flow
     } else {
       activateSoldOutMode(); // Disable everything
