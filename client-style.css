@@ -289,3 +289,234 @@ footer {
   margin-bottom: 10px;
   font-size: 1.2rem;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #111;
+  line-height: 1.6;
+}
+a {
+  text-decoration: none;
+}
+.cta-button {
+  display: inline-block;
+  background: #25d366;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+.cta-button:hover {
+  background: #1ebe5b;
+}
+.hero {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+}
+.features, .pricing, .plans {
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+}
+.plan-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.plan-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 12px;
+  width: 280px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+.plan-card h3 {
+  font-size: 1.5rem;
+}
+.plan-card .price {
+  color: #25d366;
+  font-size: 1.2rem;
+}
+.plan-card ul {
+  list-style: none;
+  text-align: left;
+  padding-left: 0;
+}
+.plan-card ul li {
+  margin-bottom: 10px;
+}
+.plan-card.highlight {
+  border: 2px solid #25d366;
+  background: #eafff3;
+}
+.plan-card.premium {
+  border: 2px solid gold;
+  background: #fff7e6;
+}
+.choose-plan {
+  background-color: #1e90ff;
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.choose-plan:hover {
+  background-color: #0077cc;
+}
+.hidden {
+  display: none;
+}
+#plan-form-section, #confirmation-section {
+  background: #fff;
+  padding: 50px 20px;
+  max-width: 700px;
+  margin: 50px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+#plan-form-section h2, #confirmation-section h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+#plan-form input, #plan-form textarea, #plan-form select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+#plan-form button {
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#plan-form button:hover {
+  background: #1ebe5b;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: #eee;
+  font-size: 0.9rem;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #111;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.cta-button {
+  background: #25d366;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.plans {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.plan-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.plan-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  width: 280px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.plan-card .price {
+  color: #25d366;
+  font-size: 1.4rem;
+}
+
+#plan-form-section {
+  padding: 50px;
+  background: #fff;
+  max-width: 700px;
+  margin: 60px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+#plan-form input,
+#plan-form select,
+#plan-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#plan-form button {
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.choose-plan {
+  margin-top: 20px;
+  background-color: #1e90ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#confirmation-section {
+  padding: 50px;
+  background: #fffbe6;
+  text-align: center;
+  margin: 50px auto;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
