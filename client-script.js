@@ -1,13 +1,11 @@
-// Handle plan selection → Prefill form + show section
 document.querySelectorAll('.choose-plan').forEach(btn => {
   btn.addEventListener('click', () => {
     const selectedPlan = btn.getAttribute('data-plan');
     document.getElementById('plan-select').value = selectedPlan;
     document.getElementById('planType').value = selectedPlan;
 
-    const formSection = document.getElementById('plan-form-section');
-    formSection.classList.remove('hidden');
-    formSection.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('plan-form-section').classList.remove('hidden');
+    document.getElementById('plan-form-section').scrollIntoView({ behavior: 'smooth' });
   });
 });
 
@@ -30,44 +28,58 @@ document.getElementById('payBtn').addEventListener('click', () => {
   paymentUI.innerHTML = `
     <div class="payment-instruction">
       <h3>📌 Prefer Scanning the QR Code</h3>
-      <p>Some UPI apps may block link-based payments for security. Please <strong>scan the QR below</strong> for guaranteed success.</p>
+      <p>Some UPI apps may block link-based payments for security. Please <strong>scan the QR below and pay 50% amount of your selected Plan</strong> for guaranteed success.</p>
       <p>OR tap the button to try UPI app link (may not work on all devices).</p>
-
-      <img src="https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg" alt="UPI QR Code" class="qr-image" style="width: 250px; height: auto; margin: 20px auto; display: block;" />
-
+      <img src="https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg" alt="UPI QR Code" style="width: 250px; margin: 20px auto; display: block;" />
       <button id="upiLinkBtn" class="cta-button">💰 Pay via UPI App</button>
-      <button type="submit" id="confirmPaidBtn" class="cta-button" style="margin-top: 15px; background: #28a745;">✅ I Have Paid</button>
+      <button type="button" id="confirmPaidBtn" class="cta-button" style="margin-top: 15px; background: #28a745;">✅ I Have Paid</button>
     </div>
   `;
 
-  // UPI button
+  // Attach UPI button event
   setTimeout(() => {
-    const upiBtn = document.getElementById('upiLinkBtn');
-    if (upiBtn) {
-      upiBtn.addEventListener('click', () => {
-        window.location.href = upiLink;
-      });
-    }
+    document.getElementById('upiLinkBtn').addEventListener('click', () => {
+      window.location.href = upiLink;
+    });
   }, 100);
 
-  // Confirm Paid button
+  // Attach Confirm Paid event with fetch() form submission
   setTimeout(() => {
-    const confirmBtn = document.getElementById('confirmPaidBtn');
-    if (confirmBtn) {
-      confirmBtn.addEventListener('click', () => {
-        sessionStorage.setItem('portfolio_payment_done', 'yes');
-        document.getElementById('plan-form').submit();
-      });
-    }
+    document.getElementById('confirmPaidBtn').addEventListener('click', async () => {
+      sessionStorage.setItem('portfolio_payment_done', 'yes');
+
+      const form = document.getElementById('plan-form');
+      const formData = new FormData(form);
+
+      // Send form to Formspree via fetch()
+      try {
+        const response = await fetch('https://formspree.io/f/xrblzdln', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          document.getElementById('plan-form-section').classList.add('hidden');
+          document.getElementById('confirmation-section').classList.remove('hidden');
+          document.getElementById('confirmation-section').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert("There was a problem submitting the form. Try again.");
+        }
+      } catch (error) {
+        alert("Something went wrong. Try again later.");
+      }
+    });
   }, 100);
 });
 
-// Show confirmation section only during active session
+// Show confirmation section only if sessionStorage says so
 window.addEventListener('DOMContentLoaded', () => {
   const isPaid = sessionStorage.getItem('portfolio_payment_done');
   if (isPaid === 'yes') {
     document.getElementById('plan-form-section')?.classList.add('hidden');
     document.getElementById('confirmation-section')?.classList.remove('hidden');
-    document.getElementById('confirmation-section')?.scrollIntoView({ behavior: 'smooth' });
   }
 });
