@@ -871,3 +871,20 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
+.disabled-btn {
+  background-color: #ccc !important;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.sold-out-banner {
+  text-align: center;
+  padding: 30px;
+  background-color: #fff5f5;
+  border: 2px solid red;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 700px;
+}
+.sold-out-banner h2 {
+  margin-bottom: 10px;
+}
