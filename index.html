@@ -57,23 +57,23 @@
 
   <section id="plan-form-section" class="hidden">
     <h2>Submit Your Details</h2>
-    <form id="plan-form">
-      <input type="hidden" id="planType" />
+    <form id="plan-form" action="https://formspree.io/f/xrblzdln" method="POST">
+      <input type="hidden" id="planType" name="planType" />
 
       <label>Select Plan</label>
-      <select id="plan-select" required>
+      <select id="plan-select" name="plan" required>
         <option value="">-- Choose --</option>
         <option value="Basic">Basic – ₹999</option>
         <option value="Standard">Standard – ₹1499</option>
         <option value="Premium">Premium – ₹1999</option>
       </select>
 
-      <input type="text" placeholder="Full Name" id="name" required />
-      <input type="email" placeholder="Email" id="email" required />
-      <input type="text" placeholder="WhatsApp Number" id="whatsapp" required />
-      <input type="url" placeholder="GitHub Profile" />
-      <input type="url" placeholder="LinkedIn Profile" />
-      <textarea placeholder="Describe what you want..."></textarea>
+      <input type="text" placeholder="Full Name" id="name" name="name" required />
+      <input type="email" placeholder="Email" id="email" name="email" required />
+      <input type="text" placeholder="WhatsApp Number" id="whatsapp" name="whatsapp" required />
+      <input type="url" placeholder="GitHub Profile" name="github" />
+      <input type="url" placeholder="LinkedIn Profile" name="linkedin" />
+      <textarea placeholder="Describe what you want..." name="message"></textarea>
 
       <div id="paymentUI" class="hidden">
         <h3>📌 Prefer Scanning the QR Code</h3>
@@ -83,7 +83,7 @@
         <p>OR tap the button below to try UPI app link (may not work on all devices):</p>
         <button type="button" id="upiLinkBtn" class="cta-button" style="margin-bottom: 20px;">Open in UPI App</button>
 
-        <button type="button" id="confirmPaidBtn" class="cta-button" style="background-color:#111;">I Have Paid</button>
+        <button type="submit" id="confirmPaidBtn" class="cta-button" style="background-color:#111;">I Have Paid</button>
       </div>
 
       <button type="button" id="payBtn">Pay & Start</button>

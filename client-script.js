@@ -22,11 +22,9 @@ document.getElementById('payBtn').addEventListener('click', () => {
   if (plan === "Standard") amount = 1499;
   else if (plan === "Premium") amount = 1999;
 
-  const halfAmount = Math.floor(amount / 2); // Round down for simplicity
-
+  const halfAmount = Math.floor(amount / 2);
   const upiLink = `upi://pay?pa=satyamrevgade2-1@okhdfcbank&pn=Satyam%20Revgade&am=${halfAmount}&cu=INR&tn=${plan}%20Plan%20Advance%2050%25`;
 
-  // Show payment UI with QR and buttons
   const paymentUI = document.getElementById('paymentUI');
   paymentUI.classList.remove('hidden');
   paymentUI.innerHTML = `
@@ -38,11 +36,11 @@ document.getElementById('payBtn').addEventListener('click', () => {
       <img src="https://res.cloudinary.com/dodaz2baz/image/upload/v1752388057/payment_qr_code_zesdce.jpg" alt="UPI QR Code" class="qr-image" style="width: 250px; height: auto; margin: 20px auto; display: block;" />
 
       <button id="upiLinkBtn" class="cta-button">💰 Pay via UPI App</button>
-      <button id="confirmPaidBtn" class="cta-button" style="margin-top: 15px; background: #28a745;">✅ I Have Paid</button>
+      <button type="submit" id="confirmPaidBtn" class="cta-button" style="margin-top: 15px; background: #28a745;">✅ I Have Paid</button>
     </div>
   `;
 
-  // UPI button → open app link
+  // UPI button
   setTimeout(() => {
     const upiBtn = document.getElementById('upiLinkBtn');
     if (upiBtn) {
@@ -50,17 +48,26 @@ document.getElementById('payBtn').addEventListener('click', () => {
         window.location.href = upiLink;
       });
     }
-  }, 100); // Slight delay to ensure DOM is ready
+  }, 100);
 
-  // "I Have Paid" → show confirmation section
+  // Confirm Paid button
   setTimeout(() => {
     const confirmBtn = document.getElementById('confirmPaidBtn');
     if (confirmBtn) {
       confirmBtn.addEventListener('click', () => {
-        document.getElementById('plan-form-section').classList.add('hidden');
-        document.getElementById('confirmation-section').classList.remove('hidden');
-        document.getElementById('confirmation-section').scrollIntoView({ behavior: 'smooth' });
+        sessionStorage.setItem('portfolio_payment_done', 'yes');
+        document.getElementById('plan-form').submit();
       });
     }
   }, 100);
+});
+
+// Show confirmation section only during active session
+window.addEventListener('DOMContentLoaded', () => {
+  const isPaid = sessionStorage.getItem('portfolio_payment_done');
+  if (isPaid === 'yes') {
+    document.getElementById('plan-form-section')?.classList.add('hidden');
+    document.getElementById('confirmation-section')?.classList.remove('hidden');
+    document.getElementById('confirmation-section')?.scrollIntoView({ behavior: 'smooth' });
+  }
 });
